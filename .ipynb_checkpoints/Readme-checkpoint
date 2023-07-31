@@ -1,0 +1,17 @@
+To clear program not done with it sha
+	for {
+		fmt.Print("Enter a command ('clear' to clear): ")
+		input, _ := reader.ReadString('\n')
+
+		// Trim any leading/trailing whitespaces and newlines
+		input = strings.TrimSpace(input)
+
+		if input == "clear" {
+			fmt.Println("Clearing the program...please wait...")
+			break
+		}
+
+		// Process the command
+		result := processCommand(input)
+		fmt.Println(result)
+	}
