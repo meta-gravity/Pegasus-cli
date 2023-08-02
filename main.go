@@ -3,21 +3,29 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"github.com/fatih/color"
-	"github.com/spf13/cobra"
+	"io/ioutil"
 	"os"
 	"os/exec"
 	"strings"
 	"time"
+
+	"github.com/fatih/color"
+	"github.com/spf13/cobra"
 )
 
-var currentColor color.Attribute // Holds the current color setting
+const version = "1.0.0"
+
+var (
+	currentColor color.Attribute // Holds the current color setting
+	history      []string         // Slice to store command history
+	rootCmd      *cobra.Command   // Declare rootCmd as a global variable
+)
 
 func main() {
-	fmt.Println("Pegasus cli")
+	fmt.Println("Pegasus CLI")
 	fmt.Println("---------------------------------")
 
-	rootCmd := &cobra.Command{Use: "Pegasus"}
+	rootCmd = &cobra.Command{Use: "Pegasus"}
 
 	// Add commands to the root command
 	rootCmd.AddCommand(hiCmd)
@@ -27,7 +35,10 @@ func main() {
 	rootCmd.AddCommand(currentYearCmd)
 	rootCmd.AddCommand(colorCmd)
 	rootCmd.AddCommand(clearCmd)
-	// rootCmd.AddCommand(devCmd)
+	// rootCmd.AddCommand(historyCmd)
+	rootCmd.AddCommand(versionCmd)
+	// rootCmd.AddCommand(listCmd)
+	rootCmd.AddCommand(readCmd)
 
 	// Execute the root command
 	if err := rootCmd.Execute(); err != nil {
@@ -39,6 +50,13 @@ func main() {
 	interactiveMode()
 }
 
+func showList() string {
+	listText := "Available Commands:\n"
+	for _, c := range rootCmd.Commands() {
+		listText += fmt.Sprintf("- %s: %s\n", c.Use, c.Short)
+	}
+	return listText
+}
 
 func interactiveMode() {
 	reader := bufio.NewReader(os.Stdin)
@@ -51,12 +69,14 @@ func interactiveMode() {
 		if input == "exit" || input == "leave" || input == "quit" {
 			fmt.Println("Thank you for using the Pegasus CLI Program!")
 			break
-		} else if input == "clear" || input == "cls"{
+		} else if input == "clear" || input == "cls" {
 			clearScreen()
 		} else {
 			// Process the command
 			result := processCommand(input)
 			fmt.Println(result)
+			// Add a history entry
+			history = append(history, input)
 		}
 	}
 }
@@ -86,7 +106,7 @@ func processCommand(command string) string {
 		return colorString("The color is set to red.", currentColor)
 	case "color white":
 		currentColor = color.FgHiWhite
-		return colorString("The color has been set to defult.", currentColor)
+		return colorString("The color has been set to default.", currentColor)
 	case "color cyan":
 		currentColor = color.FgHiCyan
 		return colorString("The color is set to cyan.", currentColor)
@@ -99,9 +119,29 @@ func processCommand(command string) string {
 	case "color blue":
 		currentColor = color.FgHiBlue
 		return colorString("The color is set to blue.", currentColor)
+	case "history":
+		return showHistory()
+	case "version":
+		return showVersion()
+	case "list":
+		return showList()
+	case "file":
+		return "file" // Placeholder for future implementation
 	default:
 		return color.HiRedString("Unknown command.")
 	}
+}
+
+func showHistory() string {
+	historyText := "Command History:\n"
+	for i, cmd := range history {
+		historyText += fmt.Sprintf("%d. %s\n", i+1, cmd)
+	}
+	return historyText
+}
+
+func showVersion() string {
+	return fmt.Sprintf("Pegasus CLI Version: %s", version)
 }
 
 func colorString(s string, c color.Attribute) string {
@@ -113,11 +153,54 @@ func clearScreen() {
 	cmd.Stdout = os.Stdout
 	cmd.Run()
 
-	fmt.Println("Pegasus cli")
+	fmt.Println("Pegasus CLI")
 	fmt.Println("---------------------------------")
 }
 
-// Rest of the code remains the same
+var readCmd = &cobra.Command{
+	Use:   "read <file>",
+	Short: "Read the contents of a file",
+	Args:  cobra.ExactArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		file := args[0]
+		data, err := ioutil.ReadFile(file)
+		if err != nil {
+			// Check if the file does not exist
+			if os.IsNotExist(err) {
+				fmt.Printf("Error: File '%s' does not exist.\n", file)
+			} else {
+				fmt.Printf("Error reading file '%s': %v\n", file, err)
+			}
+			return
+		}
+		fmt.Println(string(data))
+	},
+}
+
+// Commands to set the color using aliases (shortcuts)
+var colorRedCmd = &cobra.Command{
+	Use:    "red",
+	Hidden: true, // Hide the command from help display
+	Run: func(cmd *cobra.Command, args []string) {
+		colorCmd.Run(cmd, []string{"red"})
+	},
+}
+
+var colorGreenCmd = &cobra.Command{
+	Use:    "green",
+	Hidden: true,
+	Run: func(cmd *cobra.Command, args []string) {
+		colorCmd.Run(cmd, []string{"green"})
+	},
+}
+
+var colorBlueCmd = &cobra.Command{
+	Use:    "blue",
+	Hidden: true,
+	Run: func(cmd *cobra.Command, args []string) {
+		colorCmd.Run(cmd, []string{"blue"})
+	},
+}
 
 var hiCmd = &cobra.Command{
 	Use:   "hi",
@@ -167,55 +250,46 @@ var clearCmd = &cobra.Command{
 	},
 }
 
+var versionCmd = &cobra.Command{
+	Use:   "version",
+	Short: "Print the CLI version",
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println("Pegasus CLI Version:", version)
+	},
+}
+
 var colorCmd = &cobra.Command{
 	Use:   "color <color>",
 	Short: "Sets the color",
 	Args:  cobra.ExactArgs(1), // Expects exactly one argument after "color" command
 	Run: func(cmd *cobra.Command, args []string) {
 		colorString := strings.TrimSpace(args[0])
-		switch colorString {
-		case "red":
-			currentColor = color.FgRed
-		case "green":
-			currentColor = color.FgGreen
-		case "blue":
-			currentColor = color.FgBlue
-		default:
-			fmt.Println("Invalid color. Available colors: red, green, blue, white")
+		colorAttr, err := getColorAttribute(colorString)
+		if err != nil {
+			fmt.Println("Error:", err)
 			return
 		}
+		currentColor = colorAttr
 		fmt.Printf("The color is set to %s.\n", colorString)
 	},
 }
 
-// Commands to set the color using aliases (shortcuts)
-var colorRedCmd = &cobra.Command{
-	Use:    "red",
-	Hidden: true, // Hide the command from help display
-	Run: func(cmd *cobra.Command, args []string) {
-		colorCmd.Run(cmd, []string{"red"})
-	},
+func getColorAttribute(colorString string) (color.Attribute, error) {
+	switch strings.ToLower(colorString) {
+	case "red":
+		return color.FgRed, nil
+	case "green":
+		return color.FgGreen, nil
+	case "blue":
+		return color.FgBlue, nil
+	case "cyan":
+		return color.FgCyan, nil
+	case "white":
+		return color.FgWhite, nil
+	case "magenta":
+		return color.FgMagenta, nil
+	default:
+		return 0, fmt.Errorf("invalid color: %s. Available colors: red, green, blue, cyan, white, magenta", colorString)
+	}
 }
 
-var colorGreenCmd = &cobra.Command{
-	Use:    "green",
-	Hidden: true,
-	Run: func(cmd *cobra.Command, args []string) {
-		colorCmd.Run(cmd, []string{"green"})
-	},
-}
-
-var colorBlueCmd = &cobra.Command{
-	Use:    "blue",
-	Hidden: true,
-	Run: func(cmd *cobra.Command, args []string) {
-		colorCmd.Run(cmd, []string{"blue"})
-	},
-}
-
-func init() {
-	// Add aliases for color commands
-	colorCmd.AddCommand(colorRedCmd)
-	colorCmd.AddCommand(colorGreenCmd)
-	colorCmd.AddCommand(colorBlueCmd)
-}
