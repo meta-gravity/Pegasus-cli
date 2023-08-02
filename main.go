@@ -14,6 +14,7 @@ import (
 )
 
 const version = "1.0.0"
+const link = "https://github.com/meta-gravity/Pegasus-cli"
 
 var (
 	currentColor color.Attribute // Holds the current color setting
@@ -39,6 +40,7 @@ func main() {
 	rootCmd.AddCommand(versionCmd)
 	// rootCmd.AddCommand(listCmd)
 	rootCmd.AddCommand(readCmd)
+	rootCmd.AddCommand(linkCmd)
 
 	// Execute the root command
 	if err := rootCmd.Execute(); err != nil {
@@ -125,6 +127,8 @@ func processCommand(command string) string {
 		return showVersion()
 	case "list":
 		return showList()
+	case "link":
+		return showlink()
 	case "file":
 		return "file" // Placeholder for future implementation
 	default:
@@ -138,6 +142,10 @@ func showHistory() string {
 		historyText += fmt.Sprintf("%d. %s\n", i+1, cmd)
 	}
 	return historyText
+}
+
+func showlink() string {
+	return fmt.Sprintf("Pegasus CLI github link: %s", link)
 }
 
 func showVersion() string {
@@ -255,6 +263,14 @@ var versionCmd = &cobra.Command{
 	Short: "Print the CLI version",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("Pegasus CLI Version:", version)
+	},
+}
+
+var linkCmd = &cobra.Command{
+	Use: "link",
+	Short: "contribute to this project",
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println("Pegasus CLI github link:", link)
 	},
 }
 
