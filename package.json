@@ -1,0 +1,25 @@
+{
+  "name": "pegasus",
+  "version": "1.0.0",
+  "description": "a mordern cli",
+  "main": "main.js",
+  "bin": {
+    "pegasus": "bin/pegasus.exe"
+  },
+  "scripts": {
+    "test": "dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meta-gravity/Pegasus-cli.git"
+  },
+  "keywords": [
+    "cli"
+  ],
+  "author": "metagravity",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meta-gravity/Pegasus-cli/issues"
+  },
+  "homepage": "https://github.com/meta-gravity/Pegasus-cli#readme"
+}

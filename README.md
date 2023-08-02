@@ -1,4 +1,5 @@
 # Pegasus-cli
+
 # Pegasus CLI
 
 Pegasus is a simple command-line interface (CLI) program written in Go. It provides various commands to interact with the CLI and perform different tasks.
