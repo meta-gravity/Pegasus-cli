@@ -87,3 +87,18 @@ func myTime() {
  func continue() {
 	
  } -->
+
+ <!-- func customHelpTemplate() string {
+	const customHelp = `{{with .Long}}{{. | trim}}{{end}}
+
+{{if or .Runnable .HasSubCommands}}{{.UsageString}}{{end}}{{if .HasAvailableSubCommands}}
+Available Commands:{{range .Commands}}{{if .IsAvailableCommand}}
+  {{rpad .Name .NamePadding }} {{.Short}}{{end}}{{end}}{{end}}{{if .HasAvailableLocalFlags}}
+Flags:
+{{.LocalFlags.FlagUsages | trimTrailingWhitespaces}}{{end}}{{if .HasAvailableInheritedFlags}}
+Global Flags:
+{{.InheritedFlags.FlagUsages | trimTrailingWhitespaces}}{{end}}
+
+Use "mycli [command] --help" for more information about a command.`
+	return customHelp
+} -->

@@ -17,7 +17,7 @@ func main() {
 	fmt.Println("Pegasus cli")
 	fmt.Println("---------------------------------")
 
-	rootCmd := &cobra.Command{Use: "mycli"}
+	rootCmd := &cobra.Command{Use: "Pegasus"}
 
 	// Add commands to the root command
 	rootCmd.AddCommand(hiCmd)
@@ -27,6 +27,7 @@ func main() {
 	rootCmd.AddCommand(currentYearCmd)
 	rootCmd.AddCommand(colorCmd)
 	rootCmd.AddCommand(clearCmd)
+	// rootCmd.AddCommand(devCmd)
 
 	// Execute the root command
 	if err := rootCmd.Execute(); err != nil {
@@ -38,6 +39,7 @@ func main() {
 	interactiveMode()
 }
 
+
 func interactiveMode() {
 	reader := bufio.NewReader(os.Stdin)
 
@@ -46,10 +48,10 @@ func interactiveMode() {
 		input, _ := reader.ReadString('\n')
 		input = strings.TrimSpace(input)
 
-		if input == "exit" || input == "leave" {
-			fmt.Println("Thank you for using the Simple CLI Program!")
+		if input == "exit" || input == "leave" || input == "quit" {
+			fmt.Println("Thank you for using the Pegasus CLI Program!")
 			break
-		} else if input == "clear" {
+		} else if input == "clear" || input == "cls"{
 			clearScreen()
 		} else {
 			// Process the command
@@ -77,17 +79,28 @@ func processCommand(command string) string {
 		return colorString("The current month is "+time.Now().Month().String(), currentColor)
 	case "year":
 		return colorString("The current year is "+fmt.Sprintf("%d", time.Now().Local().Year()), currentColor)
+	case "color":
+		return colorString("color red\ncolor blue\ncolor cyan\ncolor white\ncolor magenta\ncolor green", currentColor)
 	case "color red":
-		currentColor = color.FgRed
+		currentColor = color.FgHiRed
 		return colorString("The color is set to red.", currentColor)
+	case "color white":
+		currentColor = color.FgHiWhite
+		return colorString("The color has been set to defult.", currentColor)
+	case "color cyan":
+		currentColor = color.FgHiCyan
+		return colorString("The color is set to cyan.", currentColor)
+	case "color magenta":
+		currentColor = color.FgHiMagenta
+		return colorString("The color is set to magenta.", currentColor)
 	case "color green":
-		currentColor = color.FgGreen
+		currentColor = color.FgHiGreen
 		return colorString("The color is set to green.", currentColor)
 	case "color blue":
-		currentColor = color.FgBlue
+		currentColor = color.FgHiBlue
 		return colorString("The color is set to blue.", currentColor)
 	default:
-		return "Unknown command. Please try again."
+		return color.HiRedString("Unknown command.")
 	}
 }
 
@@ -168,7 +181,7 @@ var colorCmd = &cobra.Command{
 		case "blue":
 			currentColor = color.FgBlue
 		default:
-			fmt.Println("Invalid color. Available colors: red, green, blue")
+			fmt.Println("Invalid color. Available colors: red, green, blue, white")
 			return
 		}
 		fmt.Printf("The color is set to %s.\n", colorString)
