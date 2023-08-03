@@ -8,13 +8,15 @@ import (
 	"os/exec"
 	"strings"
 	"time"
+	// "runtime"
 
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 )
 
 const version = "1.0.0"
-const link = "https://github.com/meta-gravity/Pegasus-cli"
+const githuLink = "https://github.com/meta-gravity/Pegasus-cli"
+const link = "https://github.com/meta-gravity/Pegasus-cli/releases/latest"
 const asciiArt = `
 _____           _____           _____                    _____                    _____           _____                   
 /\    \         /\    \         /\    \                  /\    \                  /\    \         /\    \                  
@@ -47,14 +49,18 @@ var (
 	rootCmd      *cobra.Command   // Declare rootCmd as a global variable
 )
 
+
 func main() {
 	fmt.Println("Pegasus CLI")
 	fmt.Println("---------------------------------------------------------------------------------------------------------------")
     printWelcomeMessage()
+	color.Blue(asciiArt)
 
 	rootCmd = &cobra.Command{Use: "Pegasus"}
 
-	// Print the welcome message
+
+
+
 
 	// Add commands to the root command
 	rootCmd.AddCommand(hiCmd)
@@ -69,6 +75,8 @@ func main() {
 	// rootCmd.AddCommand(listCmd)
 	rootCmd.AddCommand(readCmd)
 	rootCmd.AddCommand(linkCmd)
+	// for updates well still in progress
+	// rootCmd.AddCommand(updateCmd)
 
 	// Execute the root command
 	if err := rootCmd.Execute(); err != nil {
@@ -79,6 +87,17 @@ func main() {
 	// After the command execution, enter the interactive mode
 	interactiveMode()
 }
+
+// var updateCmd = &cobra.Command{
+//     Use:   "update",
+//     Short: "Update Pegasus CLI to the latest version",
+//     Run: func(cmd *cobra.Command, args []string) {
+//         err := updateCLI()
+//         if err != nil {
+//             fmt.Println("Update failed:", err)
+//         }
+//     },
+// }
 
 func showList() string {
 	listText := "Available Commands:\n"
@@ -160,10 +179,12 @@ func processCommand(command string) string {
 		return showVersion()
 	case "list":
 		return showList()
-	case "link":
-		return showlink()
+	case "github":
+		return showgithubLink()
 	case "file":
 		return "file" // Placeholder for future implementation
+	// case "update":
+	// 	return showUpdate()
 	default:
 		return color.HiRedString("Unknown command.")
 	}
@@ -177,7 +198,7 @@ func showHistory() string {
 	return historyText
 }
 
-func showlink() string {
+func showgithubLink() string {
 	return fmt.Sprintf("Pegasus CLI github link: %s", link)
 }
 
@@ -197,6 +218,54 @@ func clearScreen() {
 	fmt.Println("Pegasus CLI")
 	fmt.Println("---------------------------------")
 }
+
+// func showUpdate(cmd *cobra.Command, args []string) {
+// 	// Implement the update logic here
+// 	fmt.Println("Updating Pegasus CLI...")
+// 	// Add the actual update logic here
+// }
+
+// still working on this part 
+// func showUpdate(cmd *cobra.Command, args []string) {
+// 	// Step 1: Retrieve the latest release version from GitHub
+// 	latestVersion, err := getLatestReleaseVersion()
+// 	if err != nil {
+// 		fmt.Println("Failed to retrieve the latest release version:", err)
+// 		return
+// 	}
+
+// 	// Step 2: Compare the latest version with the current version
+// 	if latestVersion == version {
+// 		fmt.Println("Your CLI is already up to date.")
+// 		return
+// 	}
+
+// 	// Step 3: Download the new release binary from GitHub
+// 	downloadURL := fmt.Sprintf("https://github.com/YOUR_USERNAME/YOUR_REPOSITORY/releases/download/%s/pegasus.exe", latestVersion)
+// 	resp, err := http.Get(downloadURL)
+// 	if err != nil {
+// 		fmt.Println("Failed to download the update:", err)
+// 		return
+// 	}
+// 	defer resp.Body.Close()
+
+// 	// Step 4: Replace the old binary with the new one
+// 	updatePath := "bin/pegasus.exe" // The path where the new binary will be saved
+// 	out, err := os.Create(updatePath)
+// 	if err != nil {
+// 		fmt.Println("Failed to create the update file:", err)
+// 		return
+// 	}
+// 	defer out.Close()
+
+// 	_, err = io.Copy(out, resp.Body)
+// 	if err != nil {
+// 		fmt.Println("Failed to save the update file:", err)
+// 		return
+// 	}
+
+// 	fmt.Println("Pegasus CLI has been updated to the latest version.")
+// }
 
 var readCmd = &cobra.Command{
 	Use:   "read <file>",
