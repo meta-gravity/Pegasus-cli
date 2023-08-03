@@ -1,9 +1,10 @@
-package cmd
+// package cmd
 
 import (
 	"fmt"
 	"runtime"
 	"os/exec"
+	"os"
 
 	"github.com/spf13/cobra"
 )
