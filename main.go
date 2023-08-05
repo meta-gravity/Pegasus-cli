@@ -207,7 +207,7 @@ func showgithubLink() string {
 }
 
 func showVersion() string {
-	return fmt.Sprintf("Pegasus CLI Version: %s", "1.0.0")
+	return fmt.Sprintf("Pegasus CLI Version: %s", "1.1.0")
 }
 
 func colorString(s string, c color.Attribute) string {
@@ -328,7 +328,7 @@ var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Print the CLI version",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Pegasus CLI Version:", "1.0.0")
+		fmt.Println("Pegasus CLI Version:", "1.1.0")
 	},
 }
 
