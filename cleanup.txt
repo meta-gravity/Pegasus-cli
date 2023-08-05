@@ -1,0 +1,47 @@
+// func showUpdate(cmd *cobra.Command, args []string) {
+// 	// Implement the update logic here
+// 	fmt.Println("Updating Pegasus CLI...")
+// 	// Add the actual update logic here
+// }
+
+// still working on this part 
+// func showUpdate(cmd *cobra.Command, args []string) {
+// 	// Step 1: Retrieve the latest release version from GitHub
+// 	latestVersion, err := getLatestReleaseVersion()
+// 	if err != nil {
+// 		fmt.Println("Failed to retrieve the latest release version:", err)
+// 		return
+// 	}
+
+// 	// Step 2: Compare the latest version with the current version
+// 	if latestVersion == version {
+// 		fmt.Println("Your CLI is already up to date.")
+// 		return
+// 	}
+
+// 	// Step 3: Download the new release binary from GitHub
+// 	downloadURL := fmt.Sprintf("https://github.com/YOUR_USERNAME/YOUR_REPOSITORY/releases/download/%s/pegasus.exe", latestVersion)
+// 	resp, err := http.Get(downloadURL)
+// 	if err != nil {
+// 		fmt.Println("Failed to download the update:", err)
+// 		return
+// 	}
+// 	defer resp.Body.Close()
+
+// 	// Step 4: Replace the old binary with the new one
+// 	updatePath := "bin/pegasus.exe" // The path where the new binary will be saved
+// 	out, err := os.Create(updatePath)
+// 	if err != nil {
+// 		fmt.Println("Failed to create the update file:", err)
+// 		return
+// 	}
+// 	defer out.Close()
+
+// 	_, err = io.Copy(out, resp.Body)
+// 	if err != nil {
+// 		fmt.Println("Failed to save the update file:", err)
+// 		return
+// 	}
+
+// 	fmt.Println("Pegasus CLI has been updated to the latest version.")
+// }

@@ -14,9 +14,9 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const version = "1.0.0"
 const githuLink = "https://github.com/meta-gravity/Pegasus-cli"
 const link = "https://github.com/meta-gravity/Pegasus-cli/releases/latest"
+const wellcome = "welcome to pegasus cli 😁✨\nLet the journey begin🚀"
 const asciiArt = `
 _____           _____           _____                    _____                    _____           _____                   
 /\    \         /\    \         /\    \                  /\    \                  /\    \         /\    \                  
@@ -52,10 +52,11 @@ var (
 
 func main() {
 	fmt.Println("Pegasus CLI")
+	fmt.Println(wellcome)
 	fmt.Println("---------------------------------------------------------------------------------------------------------------")
-    printWelcomeMessage()
 	color.Blue(asciiArt)
 
+	//root command
 	rootCmd = &cobra.Command{Use: "Pegasus"}
 
 
@@ -70,13 +71,12 @@ func main() {
 	rootCmd.AddCommand(currentYearCmd)
 	rootCmd.AddCommand(colorCmd)
 	rootCmd.AddCommand(clearCmd)
-	// rootCmd.AddCommand(historyCmd)
 	rootCmd.AddCommand(versionCmd)
-	// rootCmd.AddCommand(listCmd)
 	rootCmd.AddCommand(readCmd)
-	rootCmd.AddCommand(linkCmd)
+	rootCmd.AddCommand(updateCmd)
+	// rootCmd.AddCommand(linkCmd)
+	// rootCmd.AddCommand(listCmd)
 	// for updates well still in progress
-	// rootCmd.AddCommand(updateCmd)
 
 	// Execute the root command
 	if err := rootCmd.Execute(); err != nil {
@@ -123,7 +123,7 @@ func interactiveMode() {
 		if input == "exit" || input == "leave" || input == "quit" {
 			fmt.Println("Thank you for using the Pegasus CLI Program!")
 			break
-		} else if input == "clear" || input == "cls" {
+		} else if input == "clear" || input == "-cls" {
 			clearScreen()
 		} else {
 			// Process the command
@@ -154,17 +154,17 @@ func processCommand(command string) string {
 	case "year":
 		return colorString("The current year is "+fmt.Sprintf("%d", time.Now().Local().Year()), currentColor)
 	case "color":
-		return colorString("color red\ncolor blue\ncolor cyan\ncolor white\ncolor magenta\ncolor green", currentColor)
+		return colorString("color red: color red\ncolor blue: color blue\ncolor cyan: color cyan\ncolor white: color -d\ncolor magenta: color mag\ncolor green: color green", currentColor)
 	case "color red":
 		currentColor = color.FgHiRed
 		return colorString("The color is set to red.", currentColor)
-	case "color white":
+	case "color -d":
 		currentColor = color.FgHiWhite
 		return colorString("The color has been set to default.", currentColor)
 	case "color cyan":
 		currentColor = color.FgHiCyan
 		return colorString("The color is set to cyan.", currentColor)
-	case "color magenta":
+	case "color mag":
 		currentColor = color.FgHiMagenta
 		return colorString("The color is set to magenta.", currentColor)
 	case "color green":
@@ -181,6 +181,10 @@ func processCommand(command string) string {
 		return showList()
 	case "github":
 		return showgithubLink()
+	case "update":
+		return link
+	case "help":
+		return authorCmd.HelpTemplate()
 	case "file":
 		return "file" // Placeholder for future implementation
 	// case "update":
@@ -199,11 +203,11 @@ func showHistory() string {
 }
 
 func showgithubLink() string {
-	return fmt.Sprintf("Pegasus CLI github link: %s", link)
+	return fmt.Sprintf("Pegasus CLI github link: %s", githuLink)
 }
 
 func showVersion() string {
-	return fmt.Sprintf("Pegasus CLI Version: %s", version)
+	return fmt.Sprintf("Pegasus CLI Version: %s", "1.0.0")
 }
 
 func colorString(s string, c color.Attribute) string {
@@ -217,55 +221,15 @@ func clearScreen() {
 
 	fmt.Println("Pegasus CLI")
 	fmt.Println("---------------------------------")
+} 
+
+var updateCmd = &cobra.Command{
+	Use: "Update",
+	Short: "To check if its the latest",
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println("Update:", link)
+	},
 }
-
-// func showUpdate(cmd *cobra.Command, args []string) {
-// 	// Implement the update logic here
-// 	fmt.Println("Updating Pegasus CLI...")
-// 	// Add the actual update logic here
-// }
-
-// still working on this part 
-// func showUpdate(cmd *cobra.Command, args []string) {
-// 	// Step 1: Retrieve the latest release version from GitHub
-// 	latestVersion, err := getLatestReleaseVersion()
-// 	if err != nil {
-// 		fmt.Println("Failed to retrieve the latest release version:", err)
-// 		return
-// 	}
-
-// 	// Step 2: Compare the latest version with the current version
-// 	if latestVersion == version {
-// 		fmt.Println("Your CLI is already up to date.")
-// 		return
-// 	}
-
-// 	// Step 3: Download the new release binary from GitHub
-// 	downloadURL := fmt.Sprintf("https://github.com/YOUR_USERNAME/YOUR_REPOSITORY/releases/download/%s/pegasus.exe", latestVersion)
-// 	resp, err := http.Get(downloadURL)
-// 	if err != nil {
-// 		fmt.Println("Failed to download the update:", err)
-// 		return
-// 	}
-// 	defer resp.Body.Close()
-
-// 	// Step 4: Replace the old binary with the new one
-// 	updatePath := "bin/pegasus.exe" // The path where the new binary will be saved
-// 	out, err := os.Create(updatePath)
-// 	if err != nil {
-// 		fmt.Println("Failed to create the update file:", err)
-// 		return
-// 	}
-// 	defer out.Close()
-
-// 	_, err = io.Copy(out, resp.Body)
-// 	if err != nil {
-// 		fmt.Println("Failed to save the update file:", err)
-// 		return
-// 	}
-
-// 	fmt.Println("Pegasus CLI has been updated to the latest version.")
-// }
 
 var readCmd = &cobra.Command{
 	Use:   "read <file>",
@@ -364,7 +328,7 @@ var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Print the CLI version",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Pegasus CLI Version:", version)
+		fmt.Println("Pegasus CLI Version:", "1.0.0")
 	},
 }
 
@@ -372,7 +336,7 @@ var linkCmd = &cobra.Command{
 	Use: "link",
 	Short: "contribute to this project",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Pegasus CLI github link:", link)
+		fmt.Println("Pegasus CLI github link:", githuLink)
 	},
 }
 
