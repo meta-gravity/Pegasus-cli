@@ -45,3 +45,85 @@
 
 // 	fmt.Println("Pegasus CLI has been updated to the latest version.")
 // }
+
+
+// import (
+//     "fmt"
+//     "github.com/spf13/cobra"
+// )
+// operations.go
+package cmd
+
+import (
+	"fmt"
+	"strconv"
+	"github.com/spf13/cobra"
+	"os"
+
+
+	
+	"github.com/meta-gravity/Pegasus/cmd" // Change "meta-gravity" to your GitHub username
+)
+
+func main() {
+	fmt.Println("Pegasus CLI")
+	fmt.Println("---------------------------------")
+	cmd.Execute()
+}
+
+func init() {
+	rootCmd.AddCommand(addCmd)
+	rootCmd.AddCommand(subtractCmd)
+}
+
+var rootCmd = &cobra.Command{
+	Use:   "Pegasus",
+	Short: "A simple CLI tool for Pegasus",
+}
+
+var addCmd = &cobra.Command{
+	Use:   "add",
+	Short: "Add two numbers",
+	Run: func(cmd *cobra.Command, args []string) {
+		if len(args) != 2 {
+			fmt.Println("Usage: pegasus add <num1> <num2>")
+			return
+		}
+
+		// Convert the arguments to numbers
+		num1 := parseNumber(args[0])
+		num2 := parseNumber(args[1])
+
+		// Perform the addition
+		result := num1 + num2
+		fmt.Printf("Result: %d\n", result)
+	},
+}
+
+var subtractCmd = &cobra.Command{
+	Use:   "subtract",
+	Short: "Subtract two numbers",
+	Run: func(cmd *cobra.Command, args []string) {
+		if len(args) != 2 {
+			fmt.Println("Usage: pegasus subtract <num1> <num2>")
+			return
+		}
+
+		// Convert the arguments to numbers
+		num1 := parseNumber(args[0])
+		num2 := parseNumber(args[1])
+
+		// Perform the subtraction
+		result := num1 - num2
+		fmt.Printf("Result: %d\n", result)
+	},
+}
+
+func parseNumber(s string) int {
+	num, err := strconv.Atoi(s)
+	if err != nil {
+		fmt.Println("Error: Invalid number format")
+		os.Exit(1)
+	}
+	return num
+}

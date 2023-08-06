@@ -46,9 +46,8 @@ _____           _____           _____                    _____                  
 var (
 	currentColor color.Attribute // Holds the current color setting
 	history      []string         // Slice to store command history
-	rootCmd      *cobra.Command   // Declare rootCmd as a global variable
+	rootCmd = &cobra.Command{Use: "Pegasus"}   // Declare rootCmd as a global variable
 )
-
 
 func main() {
 	fmt.Println("Pegasus CLI")
@@ -57,7 +56,7 @@ func main() {
 	color.Blue(asciiArt)
 
 	//root command
-	rootCmd = &cobra.Command{Use: "Pegasus"}
+	// rootCmd = &cobra.Command{Use: "Pegasus"}
 
 
 
@@ -75,11 +74,10 @@ func main() {
 	rootCmd.AddCommand(readCmd)
 	rootCmd.AddCommand(updateCmd)
 	// rootCmd.AddCommand(addCmd)
-	// rootCmd.AddCommand(linkCmd)
-	// rootCmd.AddCommand(listCmd)
-	// for updates well still in progress
+	// rootCmd.AddCommand(subtractCmd)
+	// rootCmd.AddCommand(multiplyCmd)
+	// rootCmd.AddCommand(divideCmd)
 
-	// Execute the root command
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
@@ -96,11 +94,6 @@ func showList() string {
 	}
 	return listText
 }
-
-// func printWelcomeMessage() {
-//     fmt.Printf(asciiArt)
-// }
-
 
 func interactiveMode() {
 	reader := bufio.NewReader(os.Stdin)

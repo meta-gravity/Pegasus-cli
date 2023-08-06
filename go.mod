@@ -2,6 +2,8 @@ module github.com/metagravity/pagesus
 
 go 1.20
 
+// replace github.com/meta-gravity/Pegasus/cmd => ./cmd
+
 require (
 	github.com/fatih/color v1.15.0 // direct
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
