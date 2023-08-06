@@ -53,7 +53,7 @@ var (
 func main() {
 	fmt.Println("Pegasus CLI")
 	fmt.Println(wellcome)
-	fmt.Println("---------------------------------------------------------------------------------------------------------------")
+	fmt.Println("------------------------------------------------------------------------------------------------------------")
 	color.Blue(asciiArt)
 
 	//root command
@@ -74,6 +74,7 @@ func main() {
 	rootCmd.AddCommand(versionCmd)
 	rootCmd.AddCommand(readCmd)
 	rootCmd.AddCommand(updateCmd)
+	// rootCmd.AddCommand(addCmd)
 	// rootCmd.AddCommand(linkCmd)
 	// rootCmd.AddCommand(listCmd)
 	// for updates well still in progress
@@ -88,17 +89,6 @@ func main() {
 	interactiveMode()
 }
 
-// var updateCmd = &cobra.Command{
-//     Use:   "update",
-//     Short: "Update Pegasus CLI to the latest version",
-//     Run: func(cmd *cobra.Command, args []string) {
-//         err := updateCLI()
-//         if err != nil {
-//             fmt.Println("Update failed:", err)
-//         }
-//     },
-// }
-
 func showList() string {
 	listText := "Available Commands:\n"
 	for _, c := range rootCmd.Commands() {
@@ -107,9 +97,9 @@ func showList() string {
 	return listText
 }
 
-func printWelcomeMessage() {
-    fmt.Printf(asciiArt)
-}
+// func printWelcomeMessage() {
+//     fmt.Printf(asciiArt)
+// }
 
 
 func interactiveMode() {
@@ -123,7 +113,7 @@ func interactiveMode() {
 		if input == "exit" || input == "leave" || input == "quit" {
 			fmt.Println("Thank you for using the Pegasus CLI Program!")
 			break
-		} else if input == "clear" || input == "-cls" {
+		} else if input == "clear" {
 			clearScreen()
 		} else {
 			// Process the command
@@ -187,6 +177,10 @@ func processCommand(command string) string {
 		return authorCmd.HelpTemplate()
 	case "file":
 		return "file" // Placeholder for future implementation
+	case "+":
+		return "+"
+	// case "hv"
+	// 	return "hv" //hello worlld
 	// case "update":
 	// 	return showUpdate()
 	default:
@@ -215,13 +209,14 @@ func colorString(s string, c color.Attribute) string {
 }
 
 func clearScreen() {
-	cmd := exec.Command("clear") // Use "cls" on Windows
+	cmd := exec.Command("clear")
 	cmd.Stdout = os.Stdout
-	cmd.Run()
+	// cmd.Run()
 
 	fmt.Println("Pegasus CLI")
 	fmt.Println("---------------------------------")
 } 
+
 
 var updateCmd = &cobra.Command{
 	Use: "Update",
