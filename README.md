@@ -1,4 +1,5 @@
-[pegausicon_hype](https://github.com/meta-gravity/Pegasus-cli/assets/108740247/e2f8e6be-f0fe-4a5e-823f-fc61768bdcd0)
+(![pegausicon_hype](https://github.com/meta-gravity/Pegasus-cli/assets/108740247/f6ecd744-fd2c-455e-9798-086cf9d64f04)
+
 
 # Pegasus CLI
 
@@ -21,7 +22,8 @@ Pegasus CLI offers the following commands:
 
 > `hi`: Prints a greeting message.
 > `author`: Prints the author's name.
-> `time`: Prints the current time.
+> `time`: Prints the 
+current time.
 
 > `month`: Prints the current month.
 > `year`: Prints the current year.
