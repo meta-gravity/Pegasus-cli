@@ -1,4 +1,4 @@
-# Pegasus-cli
+[pegausicon_hype](https://github.com/meta-gravity/Pegasus-cli/assets/108740247/e2f8e6be-f0fe-4a5e-823f-fc61768bdcd0)
 
 # Pegasus CLI
 
@@ -19,13 +19,14 @@ To use Pegasus CLI, you need to have Go installed on your system. Follow these s
 
 Pegasus CLI offers the following commands:
 
-- `hi`: Prints a greeting message.
-- `author`: Prints the author's name.
-- `time`: Prints the current time.
-- `month`: Prints the current month.
-- `year`: Prints the current year.
-- `clear`: Clears the screen.
-- `color <color>`: Sets the color of the text. Available colors are red, green, and blue.
+> `hi`: Prints a greeting message.
+> `author`: Prints the author's name.
+> `time`: Prints the current time.
+
+> `month`: Prints the current month.
+> `year`: Prints the current year.
+> `clear`: Clears the screen.
+> `color <color>`: Sets the color of the text. Available colors are red, green, and blue.
 
 ## Interactive Mode
 
@@ -36,9 +37,10 @@ To clear the screen, type `clear` or `cls`.
 ## Examples
 
 - To print a greeting message:
+- -hi or hello
 
 ## Exit
 
 To exit the interactive mode and quit the CLI, type `exit`, `leave`, or `quit`.
 
-Thank you for using the Pegasus CLI program! If you encounter any issues or have suggestions for improvement, feel free to contribute or create an issue on the [GitHub repository](https://github.com/your_username/your_repository).
+Thank you for using the Pegasus CLI program! If you encounter any issues or have suggestions for improvement, feel free to contribute or create an issue
