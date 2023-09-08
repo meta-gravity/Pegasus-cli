@@ -1,4 +1,4 @@
-(![pegausicon_hype](https://github.com/meta-gravity/Pegasus-cli/assets/108740247/f6ecd744-fd2c-455e-9798-086cf9d64f04)
+![pegausicon_hype](https://github.com/meta-gravity/Pegasus-cli/assets/108740247/f6ecd744-fd2c-455e-9798-086cf9d64f04)
 
 
 # Pegasus CLI
