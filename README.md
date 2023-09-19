@@ -1,48 +1,113 @@
 ![pegausicon_hype](https://github.com/meta-gravity/Pegasus-cli/assets/108740247/f6ecd744-fd2c-455e-9798-086cf9d64f04)
 
+---
+title: "Pegasus CLI Documentation"
+---
 
-# Pegasus CLI
+# Pegasus CLI Documentation
 
-Pegasus is a simple command-line interface (CLI) program written in Go. It provides various commands to interact with the CLI and perform different tasks.
+## Introduction
+
+Welcome to the Pegasus CLI, a command-line tool that provides various commands to make your terminal experience more fun and productive. Pegasus CLI is designed and developed by Metagravity, a content creator and developer with a passion for coding and exploring new SAAS ideas.
+
+## Table of Contents
+
+1. [Installation](#installation)
+2. [Getting Started](#getting-started)
+3. [Commands](#commands)
+   - [hi](#hi-command)
+   - [author](#author-command)
+   - [time](#time-command)
+   - [month](#month-command)
+   - [year](#year-command)
+   - [color](#color-command)
+   - [clear](#clear-command)
+   - [version](#version-command)
+   - [read](#read-command)
+   - [update](#update-command)
+4. [Interactive Mode](#interactive-mode)
+5. [Additional Information](#additional-information)
 
 ## Installation
 
-To use Pegasus CLI, you need to have Go installed on your system. Follow these steps to install and use the CLI:
+To install the Pegasus CLI, you can visit the official [GitHub repository](https://github.com/meta-gravity/Pegasus-cli/releases/latest) and download the latest release from [here](https://github.com/meta-gravity/Pegasus-cli/releases/latest).
 
-1. Clone the repository or download the source code.
+## Getting Started
 
-2. Navigate to the root directory of the project.
-
-3. Build the project using the following command:
-
+Once you have downloaded and installed the Pegasus CLI, you can start using it right away. Here are some basic commands to get you started:
 
 ## Commands
 
-Pegasus CLI offers the following commands:
+### hi Command
 
-- `hi`: Prints a greeting message.
-- `author`: Prints the author's name.
-- `time`: Prints the 
-current time.
+The `hi` command greets you with a friendly message.
 
-- `month`: Prints the current month.
-- `year`: Prints the current year.
-- `clear`: Clears the screen.
-- `color <color>`: Sets the color of the text. Available colors are red, green, and blue.
+```shell
+$ Pegasus hi
+author Command
+The author command prints the name of the author, which is Metagravity.
 
-## Interactive Mode
+shell
+Copy code
+$ Pegasus author
+time Command
+The time command displays the current time in HH:MM:SS format.
 
-After executing any command, the CLI enters interactive mode. In this mode, you can continuously enter new commands until you type `exit`, `leave`, or `quit` to exit the program.
+shell
+Copy code
+$ Pegasus time
+month Command
+The month command shows the current month.
 
-To clear the screen, type `clear`.
+shell
+Copy code
+$ Pegasus month
+year Command
+The year command provides the current year.
 
-## Examples
+shell
+Copy code
+$ Pegasus year
+color Command
+The color command allows you to set the text color. You can choose from the following options: red, green, blue, cyan, white, magenta.
 
-- To print a greeting message:
-- -hi or hello
+shell
+Copy code
+$ Pegasus color red
+clear Command
+The clear command clears the terminal screen.
 
-## Exit
+shell
+Copy code
+$ Pegasus clear
+version Command
+The version command displays the version of the Pegasus CLI.
 
-To exit the interactive mode and quit the CLI, type `exit`, `leave`, or `quit`.
+shell
+Copy code
+$ Pegasus version
+read Command
+The read command reads the contents of a specified file.
 
-Thank you for using the Pegasus CLI program! If you encounter any issues or have suggestions for improvement, feel free to contribute or create an issue
+shell
+Copy code
+$ Pegasus read <file>
+update Command
+The update command checks if there is a newer version of the Pegasus CLI available.
+
+shell
+Copy code
+$ Pegasus update
+Interactive Mode
+The Pegasus CLI also provides an interactive mode where you can enter commands without invoking the tool repeatedly. To enter interactive mode, simply run the CLI without any arguments:
+
+shell
+Copy code
+$ Pegasus
+In interactive mode, you can type commands and see their results. To exit the interactive mode, type "exit," "leave," or "quit."
+
+Additional Information
+For more information about the Pegasus CLI and to contribute to the project, visit the GitHub repository.
+
+Thank you for using the Pegasus CLI! We hope it enhances your terminal experience and productivity. If you have any questions or encounter issues, feel free to reach out to Metagravity, the creator of this tool.
+
