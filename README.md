@@ -40,69 +40,80 @@ The `hi` command greets you with a friendly message.
 
 ```shell
 $ Pegasus hi
+```
 author Command
 The author command prints the name of the author, which is Metagravity.
 
-shell
-Copy code
+```shell
 $ Pegasus author
+```
+```
 time Command
+```
 The time command displays the current time in HH:MM:SS format.
 
 shell
-Copy code
+```
 $ Pegasus time
+```
 month Command
 The month command shows the current month.
 
 shell
-Copy code
+```
 $ Pegasus month
+```
 year Command
 The year command provides the current year.
 
 shell
-Copy code
+```
 $ Pegasus year
+```
 color Command
 The color command allows you to set the text color. You can choose from the following options: red, green, blue, cyan, white, magenta.
-
+```
 shell
 Copy code
 $ Pegasus color red
+```
 clear Command
 The clear command clears the terminal screen.
-
+```
 shell
 Copy code
 $ Pegasus clear
+```
 version Command
 The version command displays the version of the Pegasus CLI.
-
+```
 shell
-Copy code
+```
 $ Pegasus version
+```
 read Command
 The read command reads the contents of a specified file.
 
 shell
-Copy code
+```
 $ Pegasus read <file>
+```
 update Command
 The update command checks if there is a newer version of the Pegasus CLI available.
 
 shell
 ```
 $ Pegasus update
-
+```
 Interactive Mode
 The Pegasus CLI also provides an interactive mode where you can enter commands without invoking the tool repeatedly. To enter interactive mode, simply run the CLI without any arguments:
-```
+
 shell
 ```
 $ Pegasus
 ```
 In interactive mode, you can type commands and see their results. To exit the interactive mode, type "exit," "leave," or "quit."
+
 ```
 Additional Information
 For more information about the Pegasus CLI and to contribute to the project, visit the GitHub repository.
