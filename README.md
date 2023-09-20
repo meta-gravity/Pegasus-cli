@@ -92,16 +92,18 @@ update Command
 The update command checks if there is a newer version of the Pegasus CLI available.
 
 shell
-Copy code
+```
 $ Pegasus update
+
 Interactive Mode
 The Pegasus CLI also provides an interactive mode where you can enter commands without invoking the tool repeatedly. To enter interactive mode, simply run the CLI without any arguments:
-
+```
 shell
-Copy code
+```
 $ Pegasus
+```
 In interactive mode, you can type commands and see their results. To exit the interactive mode, type "exit," "leave," or "quit."
-
+```
 Additional Information
 For more information about the Pegasus CLI and to contribute to the project, visit the GitHub repository.
 
