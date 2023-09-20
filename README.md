@@ -1,9 +1,5 @@
 ![pegausicon_hype](https://github.com/meta-gravity/Pegasus-cli/assets/108740247/f6ecd744-fd2c-455e-9798-086cf9d64f04)
 
----
-title: "Pegasus CLI Documentation"
----
-
 # Pegasus CLI Documentation
 
 ## Introduction
@@ -110,4 +106,6 @@ Additional Information
 For more information about the Pegasus CLI and to contribute to the project, visit the GitHub repository.
 
 Thank you for using the Pegasus CLI! We hope it enhances your terminal experience and productivity. If you have any questions or encounter issues, feel free to reach out to Metagravity, the creator of this tool.
+
+![Alt](https://repobeats.axiom.co/api/embed/232eaeb51d52f4c1985609ce0feb3fe46868dd02.svg "Repobeats analytics image")
 
