@@ -29,6 +29,6 @@ Welcome to the Pegasus CLI, a command-line tool that provides various commands t
 To install the Pegasus CLI, you can visit the official [GitHub repository](https://github.com/meta-gravity/Pegasus-cli/releases/latest) and download the latest release from [here](https://github.com/meta-gravity/Pegasus-cli/releases/latest).
 
 ## Star History
-[![Star History Chart](https://api.star-history.com/svg?repos=meta-gravity/plug,meta-gravity/Pegasus-cli&type=Date)](https://star-history.com/#meta-gravity/plug&meta-gravity/Pegasus-cli&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=meta-gravity/Pegasus-cli&type=Date)](https://star-history.com/#meta-gravity/Pegasus-cli&Date)
 
 
