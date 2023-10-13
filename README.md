@@ -28,97 +28,13 @@ Welcome to the Pegasus CLI, a command-line tool that provides various commands t
 
 To install the Pegasus CLI, you can visit the official [GitHub repository](https://github.com/meta-gravity/Pegasus-cli/releases/latest) and download the latest release from [here](https://github.com/meta-gravity/Pegasus-cli/releases/latest).
 
-## Getting Started
+## Star History
 
-Once you have downloaded and installed the Pegasus CLI, you can start using it right away. Here are some basic commands to get you started:
-
-## Commands
-
-### hi Command
-
-The `hi` command greets you with a friendly message.
-
-```shell
-$ Pegasus hi
-```
-author Command
-The author command prints the name of the author, which is Metagravity.
-
-```shell
-$ Pegasus author
-```
-```
-time Command
-```
-The time command displays the current time in HH:MM:SS format.
-
-shell
-```
-$ Pegasus time
-```
-month Command
-The month command shows the current month.
-
-shell
-```
-$ Pegasus month
-```
-year Command
-The year command provides the current year.
-
-shell
-```
-$ Pegasus year
-```
-color Command
-The color command allows you to set the text color. You can choose from the following options: red, green, blue, cyan, white, magenta.
-```
-shell
-Copy code
-$ Pegasus color red
-```
-clear Command
-The clear command clears the terminal screen.
-```
-shell
-Copy code
-$ Pegasus clear
-```
-version Command
-The version command displays the version of the Pegasus CLI.
-```
-shell
-```
-$ Pegasus version
-```
-read Command
-The read command reads the contents of a specified file.
-
-shell
-```
-$ Pegasus read <file>
-```
-update Command
-The update command checks if there is a newer version of the Pegasus CLI available.
-
-shell
-```
-$ Pegasus update
-```
-Interactive Mode
-The Pegasus CLI also provides an interactive mode where you can enter commands without invoking the tool repeatedly. To enter interactive mode, simply run the CLI without any arguments:
-
-shell
-```
-$ Pegasus
-```
-In interactive mode, you can type commands and see their results. To exit the interactive mode, type "exit," "leave," or "quit."
-
-```
-Additional Information
-For more information about the Pegasus CLI and to contribute to the project, visit the GitHub repository.
-
-Thank you for using the Pegasus CLI! We hope it enhances your terminal experience and productivity. If you have any questions or encounter issues, feel free to reach out to Metagravity, the creator of this tool.
-
-![Alt](https://repobeats.axiom.co/api/embed/232eaeb51d52f4c1985609ce0feb3fe46868dd02.svg "Repobeats analytics image")
+<a href="https://star-history.com/#meta-gravity/plug&meta-gravity/Pegasus-cli&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=meta-gravity/plug,meta-gravity/Pegasus-cli&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=meta-gravity/plug,meta-gravity/Pegasus-cli&type=Date" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=meta-gravity/plug,meta-gravity/Pegasus-cli&type=Date" />
+  </picture>
+</a>
 
