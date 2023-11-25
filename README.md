@@ -31,4 +31,6 @@ To install the Pegasus CLI, you can visit the official [GitHub repository](https
 ## Star History
 [![Star History Chart](https://api.star-history.com/svg?repos=meta-gravity/Pegasus-cli&type=Date)](https://star-history.com/#meta-gravity/Pegasus-cli&Date)
 
+## Note this is a simple project so feel free to send your PR's
+
 
